@@ -11,11 +11,15 @@ spring:
         - id: order
           uri: http://localhost:8081
           predicates:
-            - Path=/orders/**,/Order/** /orderStatuses/**
+            - Path=/orders/**, /orderStatuses/**
         - id: delivery
           uri: http://localhost:8082
           predicates:
-            - Path=/deliveries/**,/Delivery/** 
+            - Path=/deliveries/**, 
+        - id: frontend
+          uri: http://localhost:8080
+          predicates:
+            - Path=/**
       globalcors:
         corsConfigurations:
           '[/**]':
@@ -38,11 +42,15 @@ spring:
         - id: order
           uri: http://order:8080
           predicates:
-            - Path=/orders/**,/Order/** /orderStatuses/**
+            - Path=/orders/**, /orderStatuses/**
         - id: delivery
           uri: http://delivery:8080
           predicates:
-            - Path=/deliveries/**,/Delivery/** 
+            - Path=/deliveries/**, 
+        - id: frontend
+          uri: http://frontend:8080
+          predicates:
+            - Path=/**
       globalcors:
         corsConfigurations:
           '[/**]':

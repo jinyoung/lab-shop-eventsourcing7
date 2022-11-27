@@ -50,7 +50,7 @@ public class OrderStatusQueryController {
 
                 EntityModel<OrderStatus> model = EntityModel.of(resource.get());
                 model
-                      .add(Link.of("/orders/" + resource.get().getId()).withSelfRel());
+                      .add(Link.of("/orderStatuses/" + resource.get().getId()).withSelfRel());
               
                 return new ResponseEntity<>(model, HttpStatus.OK);
             }).exceptionally(ex ->{
@@ -58,6 +58,8 @@ public class OrderStatusQueryController {
             });
 
   }
+
+
 
 }
 

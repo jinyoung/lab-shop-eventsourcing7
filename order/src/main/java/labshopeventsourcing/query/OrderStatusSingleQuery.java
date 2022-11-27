@@ -5,6 +5,5 @@ import lombok.Data;
 @Data
 public class OrderStatusSingleQuery {
 
-    Long id;
-
+    private Long id;
 }

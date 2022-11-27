@@ -11,8 +11,8 @@ import lombok.ToString;
 @Data
 public class OrderCommand {
 
-    @TargetAggregateIdentifier
-    private Long id;
+    // @TargetAggregateIdentifier
+    // private Long id;
     private String productId;
     private Integer qty;
     private String customerId;
