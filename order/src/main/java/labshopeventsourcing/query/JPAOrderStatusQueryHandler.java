@@ -29,6 +29,11 @@ public class JPAOrderStatusQueryHandler {
         return orderStatusRepository.findAll();
     }
 
+    @QueryHandler
+    public Optional<OrderStatus> handle(OrderStatusSingleQuery query) {
+        return orderStatusRepository.findById(query.getId());
+    }
+
     @EventHandler
     public void whenOrderPlaced_then_CREATE_1 (OrderPlacedEvent orderPlaced) throws Exception{
             // view 객체 생성
@@ -36,8 +41,8 @@ public class JPAOrderStatusQueryHandler {
             // view 객체에 이벤트의 Value 를 set 함
             orderStatus.setId(orderPlaced.getId());
             orderStatus.setStatus(orderPlaced.getStatus());
-            orderStatus.setAmount(Long.valueOf(orderPlaced.getAmount()));
-            orderStatus.setQty(orderPlaced.getQty());
+            orderStatus.setAmount(orderPlaced.getAmount());
+            //orderStatus.setQty(orderPlaced.getQty());
             // view 레파지 토리에 save
             orderStatusRepository.save(orderStatus);
     }

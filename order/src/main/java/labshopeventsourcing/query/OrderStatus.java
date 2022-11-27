@@ -11,7 +11,7 @@ import lombok.Data;
 @Entity
 @Table(name="OrderStatus_table")
 @Data
-@Relation(collectionRelation = "orderStatuses")
+@Relation(collectionRelation = "orders")
 public class OrderStatus {
 
         @Id

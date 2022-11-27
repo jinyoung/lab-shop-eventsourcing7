@@ -49,7 +49,7 @@ public class OrderController {
                   OrderAggregate resource = new OrderAggregate();
                   BeanUtils.copyProperties(orderCommand, resource);
 
-                  resource.setId(id);
+                  resource.setId((Long)id);
                   
                   EntityModel<OrderAggregate> model = EntityModel.of(resource);
                   model
@@ -61,32 +61,6 @@ public class OrderController {
 
   }
 
-
-  @RequestMapping(value = "/orders",
-        method = RequestMethod.DELETE
-      )
-  public CompletableFuture cancel(@RequestBody CancelCommand cancelCommand)
-        throws Exception {
-      System.out.println("##### /order/cancel  called #####");
-
-      // send command
-      return commandGateway.send(cancelCommand)            
-            .thenApply(
-            id -> {
-                  OrderAggregate resource = new OrderAggregate();
-                  BeanUtils.copyProperties(cancelCommand, resource);
-
-                  resource.setId(id);
-                  
-                  EntityModel<OrderAggregate> model = EntityModel.of(resource);
-                  model
-                        .add(Link.of("/orders/" + resource.getId()).withSelfRel());
-
-                  return new ResponseEntity<>(model, HttpStatus.OK);
-            }
-      );
-
-  }
 
 
 
